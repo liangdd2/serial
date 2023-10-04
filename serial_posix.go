@@ -1,3 +1,4 @@
+//go:build darwin || linux || freebsd || openbsd || netbsd
 // +build darwin linux freebsd openbsd netbsd
 
 package serial
@@ -212,7 +213,7 @@ func newTermios(c *Config) (termios *syscall.Termios, err error) {
 		// PARENB: Enable parity generation on output.
 		termios.Cflag |= syscall.PARENB
 		// INPCK: Enable input parity checking.
-		termios.Iflag |= syscall.INPCK
+		//termios.Iflag |= syscall.INPCK
 	default:
 		err = fmt.Errorf("serial: unsupported parity %v", c.Parity)
 		return
