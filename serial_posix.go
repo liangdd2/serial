@@ -213,7 +213,7 @@ func newTermios(c *Config) (termios *syscall.Termios, err error) {
 		// PARENB: Enable parity generation on output.
 		termios.Cflag |= syscall.PARENB
 		// INPCK: Enable input parity checking.
-		//termios.Iflag |= syscall.INPCK
+		termios.Iflag |= syscall.IGNPAR
 	default:
 		err = fmt.Errorf("serial: unsupported parity %v", c.Parity)
 		return
